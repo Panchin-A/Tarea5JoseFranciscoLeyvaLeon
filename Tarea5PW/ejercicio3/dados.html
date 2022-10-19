@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content
+		="width=device-width, initial-scale=1.0">
+	<title>Dice Game</title>
+
+	<style>
+		.container {
+			width: 70%;
+			margin: auto;
+			text-align: center;
+		}
+
+		.dice {
+			text-align: center;
+			display: inline-block;
+			margin: 10px;
+		}
+
+		body {
+			background-color: #042f4b;
+			margin: 0;
+		}
+
+		h1 {
+			margin: 30px;
+			font-family: "Lobster", cursive;
+			text-shadow: 5px 0 #232931;
+			font-size: 4.5rem;
+			color: #4ecca3;
+			text-align: center;
+		}
+
+		p {
+			font-size: 2rem;
+			color: #4ecca3;
+			font-family: "Indie Flower", cursive;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		.bottom {
+			padding-top: 30px;
+		}
+
+		.butn {
+			background: #4ecca3;
+			font-family: "Indie Flower", cursive;
+			border-radius: 7px;
+			color: #ffff;
+			font-size: 30px;
+			padding: 16px 25px 16px 25px;
+			text-decoration: none;
+		}
+
+		.butn:hover {
+			background: #232931;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Let's Play</h1>
+
+		<div class="dice">
+			<p class="Player1">Player 1</p>
+			<img class="img1" src="dice6.png">
+		</div>
+
+		<div class="dice">
+			<p class="Player2">Player 2</p>
+			<img class="img2" src="dice6.png">
+		</div>
+		<div class="dice">
+			<p class="Player3">Player 3</p>
+			<img class="img3" src="dice6.png">
+		</div>
+	</div>
+
+	<div class="container bottom">
+		<button type="button" class="butn"
+			onClick="rollTheDice()">
+			Tira los dados
+		</button>
+	
+	<div class="container bottom">
+		<button type="button" class="butn"
+			onClick="editNames()">
+			Editar nombres
+		</button>
+	</div>
+
+	<script>
+
+		// Player name
+		var player1 = "Player 1";
+		var player2 = "Player 2";
+		var player3 = "Player 3";
+		
+		// Function to change the player name
+		function editNames() {
+			player1 = prompt("Change Player1 name");
+			player2 = prompt("Change player2 name");
+			player3 = prompt("Change player3 name");
+			document.querySelector("p.Player1")
+							.innerHTML = player1;
+							
+			document.querySelector("p.Player2")
+							.innerHTML = player2;
+			document.querySelector("p.Player3")
+							.innerHTML = player3;
+		}
+
+		                          function rollTheDice() {
+			setTimeout(function () {
+				
+				var r1=0;
+				var r2=0;
+				var r3=0;
+				//lo mete al ciclo en el que se tiran los dados hasta alcanzar el resultado optimo
+                    do{var randomNumber1 = Math.floor(Math.random() * 6) + 1;
+				var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+				var randomNumber3 = Math.floor(Math.random() * 6) + 1;
+				
+
+				document.querySelector(".img1").setAttribute("src",
+					"dice" + randomNumber1 + ".png");
+
+				document.querySelector(".img2").setAttribute("src",
+					"dice" + randomNumber2 + ".png");
+
+				document.querySelector(".img3").setAttribute("src",
+					"dice" + randomNumber3 + ".png");
+					r1=randomNumber1+r1;
+					r2=randomNumber2+r2;
+					r3=randomNumber3+r3;
+                     if(r1>=21){
+						document.querySelector("h1").innerHTML = ("El Ganador definitivo es: " + player1 +" Con "+r1+" Puntos!");
+					
+					 }
+					 else if(r2>=21){
+						document.querySelector("h1").innerHTML = ("El Ganador definitivo es: " + player2 +" Con "+r2+" Puntos!");
+					
+					 }
+					else if(r3>=21){
+						document.querySelector("h1").innerHTML = ("El Ganador definitivo es: " + player3 +" Con "+r3+" Puntos!");
+					
+					 }
+					 else {
+						document.querySelector("h1").innerHTML
+							= ("Nadie logro llegar a los 21 puntos");
+						console.log("tan malos son que no tienen 21 puntos.");
+					}
+					}while(r1 <= 20 && r2 <= 20 && r3 <= 20);
+				
+			}, 250);
+		}
+	</script>
+</body>
+
+</html>
